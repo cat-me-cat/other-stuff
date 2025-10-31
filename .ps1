@@ -1,3 +1,4 @@
+$ProgressPreference = 'SilentlyContinue'
 sal n Out-Null
 sal wh Write-Host
 sal ww Write-Warning
@@ -378,5 +379,6 @@ try {
     }
 }
 kill -Name explorer -Force
+
 
 
