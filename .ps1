@@ -2,7 +2,6 @@ sal n Out-Null
 sal wh Write-Host
 sal ww Write-Warning
 sal we Write-Error
-$ProgressPreference = 'SilentlyContinue'
 wh "Setting dark mode"
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "AppsUseLightTheme" -Value 0
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "SystemUsesLightTheme" -Value 0
@@ -379,4 +378,5 @@ try {
     }
 }
 kill -Name explorer -Force
+
 
