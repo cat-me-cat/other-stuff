@@ -40,7 +40,6 @@ $urls = @(
     "https://aka.ms/vs/17/release/vc_redist.arm64.exe"
 )
 $downloadPath = "$env:TEMP"
-$ProgressPreference = 'SilentlyContinue'
 foreach ($url in $urls) {
     $fileName = $url.Split('/')[-1]
     $filePath = Join-Path $downloadPath $fileName
@@ -54,7 +53,6 @@ foreach ($url in $urls) {
         we "Failed to download $fileName."
     }
 }
-$ProgressPreference = 'Continue'
 $flightRing = "Retail"
 $flightingBranchName = ""
 $currentBranch = "ge_release"
@@ -266,8 +264,6 @@ try {
         wh "Total files to download: $($packagesToDownload.Count)" -ForegroundColor Cyan
         wh "------------------------------------------------------------"
         wh "Step 4: Fetching URLs and downloading files..." -ForegroundColor Magenta
-        $originalPref = $ProgressPreference
-        $ProgressPreference = 'SilentlyContinue'
         foreach ($package in $packagesToDownload) {
             wh "Processing: $($package.FullName)"
             $fileUrlRequestPayload = $fileUrlXmlTemplate -f $encryptedCookieData, $package.UpdateID, $package.RevisionNumber, $currentBranch, $flightRing, $flightingBranchName
@@ -297,7 +293,6 @@ try {
             }
             wh ""
         }
-        $ProgressPreference = $originalPref
         wh "------------------------------------------------------------"
         wh "Finished downloading packages to: $workingDir" -ForegroundColor Green
     } catch {
